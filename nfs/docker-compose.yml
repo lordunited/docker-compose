@@ -1,0 +1,19 @@
+version: '3'
+services:
+ nfs-server:
+        image: itsthenetwork/nfs-server-alpine
+        container_name: nfs
+        restart: always
+        volumes:
+        - /opt/nfs/infra:/nfsshare/infra
+        - /opt/nfs/other:/nfsshare/other
+        environment:
+        - SHARED_DIRECTORY=/nfsshare/infra
+        - SYNC=true
+        cap_add:
+        - ALL
+        ports:
+        - 111:111
+        - 2049:2049
+        - 9090:8080
+        network_mode: host

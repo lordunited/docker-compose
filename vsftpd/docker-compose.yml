@@ -1,0 +1,17 @@
+version: "3"
+services:
+ vsftpd:
+   build: ./make 
+   container_name: vsftpd
+   ports:
+   - '21:21'
+   - '20:20'
+   - '21100-21110:21100-21110'
+   volumes:
+   - /opt/ftpshare:/home/vsftpd
+   networks: 
+   - vsftpd
+   tty: true   
+networks:
+ vsftpd:
+    driver: bridge
